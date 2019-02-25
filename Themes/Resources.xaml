@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries />
+
+    <!--  VISUsrGrpInput  -->
+
+    <system:String x:Key="UserValidationExternalUserTitle">Ungewollte Eingabe</system:String>
+    <system:String x:Key="UserValidationExternalUserComplexAttribute">{0}: Ein externer Nutzer wurde gesetzt. Bitte überprüfen Sie Ihre Eingabe.</system:String>
+    <system:String x:Key="UserValidationExternalUserAttribute">Attribut {0}: Ein externer Nutzer wurde gesetzt. Bitte überprüfen Sie Ihre Eingabe.</system:String>
+    <system:String x:Key="UserValidationExternalUser">Ein externer Nutzer wurde gesetzt</system:String>
+
+    <!--  VISUsrGrpInput  -->
+</ResourceDictionary>
