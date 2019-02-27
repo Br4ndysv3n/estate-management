@@ -24,10 +24,17 @@ namespace Immobilienverwaltung
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            var regionManager = new RegionManager();
+        private void OnStammdatenClick(object sender, RoutedEventArgs e)
+        {
+            var window = new Stammdaten.Stammdaten();
+            window.Show();
+        }
+
+        private void OnNeuerMieterClick(object sender, RoutedEventArgs e)
+        {
             
-            regionManager.RegisterViewWithRegion("MainContext", typeof(Stammdaten.Context));
         }
     }
 }

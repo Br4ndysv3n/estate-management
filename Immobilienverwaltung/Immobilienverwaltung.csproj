@@ -78,6 +78,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -142,10 +143,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Images\Images.csproj">
+      <Project>{3f285a78-2754-4998-a44a-7bec2c0a54c2}</Project>
+      <Name>Images</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Stammdaten\Stammdaten.csproj">
       <Project>{011f459e-80c9-4fcb-9b52-c10855f91463}</Project>
       <Name>Stammdaten</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /d "$(ProjectDir)..\Database\ImmVer.sqlite" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
