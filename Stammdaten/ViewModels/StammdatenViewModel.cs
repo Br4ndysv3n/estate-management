@@ -88,12 +88,17 @@ namespace Stammdaten.ViewModels
         {
             SetNewItem();
             SetEditMode(true);
+
+            CmdNew.RaiseCanExecuteChanged();
         }
 
         private bool CanNeu()
         {
             var canNeu = !IsAlleContext;
-            canNeu = !canNeu || SelectedItemViewModel == null || !SelectedItemViewModel.IsEditMode;
+            if (SelectedItemViewModel != null)
+            {
+                canNeu = canNeu && !SelectedItemViewModel.IsEditMode;
+            }
 
             return canNeu;
         }

@@ -117,8 +117,8 @@
     <Compile Include="ViewModels\StammdatenItemViewModelBase.cs" />
     <Compile Include="ViewModels\StammdatenViewModel.cs" />
     <Compile Include="ViewModels\VersorgerViewModel.cs" />
-    <Compile Include="Views\Context.xaml.cs">
-      <DependentUpon>Context.xaml</DependentUpon>
+    <Compile Include="Views\Stammdaten.xaml.cs">
+      <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,7 +132,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Context.xaml">
+    <Page Include="Views\Stammdaten.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

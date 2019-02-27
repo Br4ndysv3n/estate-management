@@ -1,0 +1,734 @@
+﻿<Window Title="Stammdatenverwaltung"
+        x:Class="Stammdaten.Stammdaten"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
+        xmlns:ViewModels="clr-namespace:Stammdaten.ViewModels"
+        xmlns:Models="clr-namespace:Common.Models;assembly=Common"
+        xmlns:person="clr-namespace:Common.Models.Person;assembly=Common"
+        xmlns:helper="clr-namespace:Common.Helper;assembly=Common"
+        xmlns:converter="clr-namespace:Common.Converter;assembly=Common"
+        xmlns:imgConverter="clr-namespace:Images.Converter;assembly=Images"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <ViewModels:StammdatenViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Themes;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <converter:BooleanInvertedConverter x:Key="BooleanInverted" />
+            <imgConverter:StammdatenTypToIconConverter x:Key="StammdatenTypToIconConverter" />
+
+            <Style TargetType="{x:Type Ribbon}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Ribbon}">
+                            <Grid AutomationProperties.AutomationId="Ribbon_Style_Grid_279844093251004"
+                                  SnapsToDevicePixels="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border x:Name="titleBarBackground"
+                                        Grid.ColumnSpan="3"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                        BorderThickness="0,0,0,1"
+                                        Visibility="Collapsed" />
+                                <DockPanel Grid.Column="0"
+                                           Grid.ColumnSpan="3"
+                                           Margin="0,-5,0,0"
+                                           AutomationProperties.AutomationId="Ribbon_Style_DockPanel_279844093257014"
+                                           LastChildFill="True">
+                                    <ContentControl x:Name="windowButtonPlaceHolder"
+                                                    Width="35"
+                                                    Margin="3,0,0,0"
+                                                    AutomationProperties.AutomationId="Ribbon_Style_ContentControl_279844093263323"
+                                                    DockPanel.Dock="Right"
+                                                    Focusable="False"
+                                                    IsHitTestVisible="False">
+                                        <ContentControl.Visibility>
+                                            <TemplateBinding Property="IsHostedInRibbonWindow">
+                                                <TemplateBinding.Converter>
+                                                    <BooleanToVisibilityConverter />
+                                                </TemplateBinding.Converter>
+                                            </TemplateBinding>
+                                        </ContentControl.Visibility>
+                                    </ContentControl>
+                                    <ContentControl x:Name="windowIconPadding"
+                                                    Width="16"
+                                                    Margin="0,0,3,0"
+                                                    AutomationProperties.AutomationId="Ribbon_Style_ContentControl_279844093269032"
+                                                    DockPanel.Dock="Left"
+                                                    Focusable="False"
+                                                    IsHitTestVisible="False" />
+                                    <primitives:RibbonTitlePanel x:Name="PART_TitlePanel">
+                                        <Grid x:Name="QatTopHost"
+                                              AutomationProperties.AutomationId="Ribbon_Style_Grid_279844093274741">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="QatTopHostLeftBorder"
+                                                    Grid.Column="0"
+                                                    Width="3"
+                                                    Margin="8,2,0,2"
+                                                    Background="#77222222"
+                                                    BorderBrush="#66CCCCCC"
+                                                    BorderThickness="0"
+                                                    CornerRadius="0,0,2,2" />
+                                            <ContentPresenter x:Name="QatTopHostContentPresenter"
+                                                              Grid.Column="1"
+                                                              AutomationProperties.AutomationId="Ribbon_Style_ContentPresenter_279844093280450"
+                                                              Content="{TemplateBinding QuickAccessToolBar}"
+                                                              IsHitTestVisible="True" />
+                                            <Border x:Name="QatTopHostRightBorder"
+                                                    Grid.Column="2"
+                                                    Width="3"
+                                                    Margin="0,2,1,2"
+                                                    Background="#77222222"
+                                                    BorderBrush="#66CCCCCC"
+                                                    BorderThickness="0"
+                                                    CornerRadius="0" />
+                                        </Grid>
+                                        <ContentPresenter x:Name="PART_TitleHost"
+                                                          MinWidth="75"
+                                                          MinHeight="22"
+                                                          Margin="3,3,3,0"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="Center"
+                                                          AutomationProperties.AutomationId="Ribbon_Style_ContentPresenter_279844093289464"
+                                                          Content="{TemplateBinding Title}"
+                                                          ContentSource="Title"
+                                                          ContentTemplate="{TemplateBinding TitleTemplate}"
+                                                          IsHitTestVisible="False"
+                                                          TextElement.FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"
+                                                          TextElement.FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSizeKey}}"
+                                                          TextElement.FontWeight="{DynamicResource {x:Static SystemFonts.CaptionFontWeightKey}}"
+                                                          TextElement.Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+                                            <ContentPresenter.Resources>
+                                                <DataTemplate x:Key="{DataTemplateKey DataType={x:Type system:String}}"
+                                                              DataType="{x:Type system:String}">
+                                                    <TextBlock x:Name="titleTextBlock"
+                                                               Margin="0,-2,0,0"
+                                                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                               VerticalAlignment="Center"
+                                                               AutomationProperties.AutomationId="Ribbon_Style_TextBlock_279844093295173"
+                                                               Text="{TemplateBinding ContentControl.Content}"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                    <DataTemplate.Triggers>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+
+                                                                <Condition Binding="{Binding IsHostedInRibbonWindow, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type Ribbon}, Mode=FindAncestor}}" Value="True" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter TargetName="titleTextBlock" Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect BlurRadius="5"
+                                                                                      ShadowDepth="0"
+                                                                                      Color="#FFFFFFFF" />
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </MultiDataTrigger>
+
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+
+                                                                <Condition Binding="{Binding IsHostedInRibbonWindow, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type Ribbon}, Mode=FindAncestor}}" Value="True" />
+                                                                <Condition Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type RibbonWindow}, Mode=FindAncestor}}" Value="Normal" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter TargetName="titleTextBlock" Property="Margin">
+                                                                <Setter.Value>
+                                                                    <Thickness>0,0,0,7</Thickness>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </MultiDataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </ContentPresenter.Resources>
+                                        </ContentPresenter>
+                                        <RibbonContextualTabGroupItemsControl x:Name="PART_ContextualTabGroupItemsControl"
+                                                                              HorizontalAlignment="Center"
+                                                                              IsHitTestVisible="True" />
+                                    </primitives:RibbonTitlePanel>
+                                </DockPanel>
+                                <Border x:Name="BackgroundBorder"
+                                        Grid.Row="1"
+                                        Grid.RowSpan="3"
+                                        Grid.ColumnSpan="3"
+                                        Background="{TemplateBinding Panel.Background}"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}" />
+                                <Border Grid.Row="1"
+                                        Grid.ColumnSpan="3">
+                                    <Popup x:Name="PART_ITEMSPRESENTERPOPUP"
+                                           AllowsTransparency="True"
+                                           AutomationProperties.AutomationId="Ribbon_Style_Popup_279844093300882"
+                                           IsOpen="False"
+                                           PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                                        <Border x:Name="CollapsedPopupBackgroundBorder"
+                                                Background="{TemplateBinding Panel.Background}">
+                                            <ContentControl x:Name="popupItemsPresenterHost"
+                                                            Margin="0,1,0,0"
+                                                            AutomationProperties.AutomationId="Ribbon_Style_ContentControl_279844093306892"
+                                                            Focusable="False"
+                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                            KeyboardNavigation.TabNavigation="Cycle" />
+                                        </Border>
+                                    </Popup>
+                                </Border>
+                                <ContentPresenter x:Name="applicationMenu"
+                                                  Grid.Row="1"
+                                                  VerticalAlignment="Top"
+                                                  AutomationProperties.AutomationId="Ribbon_Style_ContentPresenter_279844093312600"
+                                                  Content="{TemplateBinding ApplicationMenu}"
+                                                  Visibility="Collapsed" />
+                                <RibbonTabHeaderItemsControl x:Name="TabHeaderItemsControl"
+                                                             Grid.Row="1"
+                                                             Grid.Column="1"
+                                                             Margin="1,1,1,-2"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Top"
+                                                             Visibility="Collapsed" />
+
+                                <ContentPresenter x:Name="PART_HelpPane"
+                                                  Grid.Row="1"
+                                                  Grid.Column="2"
+                                                  MaxHeight="18"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Center"
+                                                  AutomationProperties.AutomationId="Ribbon_Style_ContentPresenter_279844093320713"
+                                                  Content="{TemplateBinding HelpPaneContent}"
+                                                  ContentSource="HelpPaneContent"
+                                                  ContentTemplate="{TemplateBinding HelpPaneContentTemplate}" />
+                                <ContentControl x:Name="mainItemsPresenterHost"
+                                                Grid.Row="2"
+                                                Grid.ColumnSpan="3"
+                                                AutomationProperties.AutomationId="Ribbon_Style_ContentControl_279844093332431"
+                                                Focusable="False">
+                                    <Border x:Name="groupsBorder"
+                                            Height="91"
+                                            BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                            BorderThickness="1,0,1,0"
+                                            SnapsToDevicePixels="True">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                <GradientStop Offset="0" Color="#EEFFFFFF" />
+                                                <GradientStop Offset="0.1" Color="#BBFFFFFF" />
+                                                <GradientStop Offset="0.5" Color="#05FFFFFF" />
+                                                <GradientStop Offset="1" Color="#20FFFFFF" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border Margin="0,0,0,0"
+                                                BorderBrush="#60FFFFFF"
+                                                BorderThickness="0,0,0,0"
+                                                SnapsToDevicePixels="True">
+                                            <ItemsPresenter x:Name="ItemsPresenter"
+                                                            AutomationProperties.AutomationId="Ribbon_Style_ItemsPresenter_279844093344751" />
+                                        </Border>
+                                    </Border>
+                                </ContentControl>
+                                <Border x:Name="QatBottomHost"
+                                        Grid.Row="3"
+                                        Grid.ColumnSpan="3"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}">
+                                    <ContentPresenter x:Name="QatBottomHostContentPresenter"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Center"
+                                                      AutomationProperties.AutomationId="Ribbon_Style_ContentPresenter_279844093351061"
+                                                      IsHitTestVisible="True" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsCollapsed">
+                                    <Trigger.Value>
+                                        <system:Boolean>True</system:Boolean>
+                                    </Trigger.Value>
+                                    <Setter TargetName="applicationMenu" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatBottomHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatTopHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="mainItemsPresenterHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="TabHeaderItemsControl" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="PART_HelpPane" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="PART_ContextualTabGroupItemsControl" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="PART_TitleHost" Property="MinWidth">
+                                        <Setter.Value>
+                                            <system:Double>0</system:Double>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsCollapsed">
+                                            <Condition.Value>
+                                                <system:Boolean>True</system:Boolean>
+                                            </Condition.Value>
+                                        </Condition>
+                                        <Condition Property="IsHostedInRibbonWindow">
+                                            <Condition.Value>
+                                                <system:Boolean>False</system:Boolean>
+                                            </Condition.Value>
+                                        </Condition>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                </MultiTrigger>
+                                <Trigger Property="ShowQuickAccessToolBarOnTop">
+                                    <Trigger.Value>
+                                        <system:Boolean>False</system:Boolean>
+                                    </Trigger.Value>
+                                    <Setter TargetName="QatTopHostContentPresenter" Property="ContentControl.Content" Value="{x:Null}" />
+                                    <Setter TargetName="QatTopHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatBottomHostContentPresenter" Property="ContentControl.Content" Value="{Binding QuickAccessToolBar, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    <Setter TargetName="BackgroundBorder" Property="BorderThickness">
+                                        <Setter.Value>
+                                            <Thickness>0,0,0,1</Thickness>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding QuickAccessToolBar.HasItems, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                                        <Condition Binding="{Binding QuickAccessToolBar.CustomizeMenuButton, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Null}" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="QatTopHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatBottomHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                </MultiDataTrigger>
+                                <Trigger Property="IsMinimized">
+                                    <Trigger.Value>
+                                        <system:Boolean>True</system:Boolean>
+                                    </Trigger.Value>
+                                    <Setter TargetName="mainItemsPresenterHost" Property="Content" Value="{x:Null}" />
+                                    <Setter TargetName="mainItemsPresenterHost" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="popupItemsPresenterHost" Property="Content" Value="{Binding ElementName=groupsBorder}" />
+                                    <Setter TargetName="BackgroundBorder" Property="BorderThickness">
+                                        <Setter.Value>
+                                            <Thickness>0,0,0,1</Thickness>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="WindowIconVisibility" Value="{x:Static Visibility.Collapsed}">
+                                    <Setter TargetName="windowIconPadding" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatTopHostLeftBorder" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsMinimized">
+                                            <Condition.Value>
+                                                <system:Boolean>True</system:Boolean>
+                                            </Condition.Value>
+                                        </Condition>
+                                        <Condition Property="ShowQuickAccessToolBarOnTop">
+                                            <Condition.Value>
+                                                <system:Boolean>False</system:Boolean>
+                                            </Condition.Value>
+                                        </Condition>
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="QatBottomHost" Property="BorderThickness">
+                                        <Setter.Value>
+                                            <Thickness>0,1,0,0</Thickness>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger>
+                                <Trigger Property="IsHostedInRibbonWindow">
+                                    <Trigger.Value>
+                                        <system:Boolean>False</system:Boolean>
+                                    </Trigger.Value>
+                                    <Setter TargetName="BackgroundBorder" Property="Grid.Row">
+                                        <Setter.Value>
+                                            <system:Int32>0</system:Int32>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="BackgroundBorder" Property="Grid.RowSpan">
+                                        <Setter.Value>
+                                            <system:Int32>4</system:Int32>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="titleBarBackground" Property="Visibility" Value="{x:Static Visibility.Visible}" />
+                                    <Setter TargetName="windowIconPadding" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                    <Setter TargetName="QatTopHostLeftBorder" Property="Visibility" Value="{x:Static Visibility.Collapsed}" />
+                                </Trigger>
+                                <Trigger Property="IsDropDownOpen">
+                                    <Trigger.Value>
+                                        <system:Boolean>True</system:Boolean>
+                                    </Trigger.Value>
+                                    <Setter TargetName="BackgroundBorder" Property="BorderThickness">
+                                        <Setter.Value>
+                                            <Thickness>0,0,0,0</Thickness>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="PART_ITEMSPRESENTERPOPUP" Property="IsOpen" Value="true" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="{x:Type RibbonToggleButton}">
+                <Setter Property="Width" Value="100" />
+            </Style>
+
+            <DataTemplate x:Key="Adresse_Liste">
+                <DockPanel DockPanel.Dock="Right">
+                    <!--  Icon  -->
+                    <Image Height="15"
+                           Source="{Binding StammdatenTyp, Converter={StaticResource StammdatenTypToIconConverter}}" />
+                    <!--  Name  -->
+                    <TextBlock x:Name="AdressItem_Name"
+                               Margin="5"
+                               DockPanel.Dock="Top"
+                               FontWeight="SemiBold"
+                               TextWrapping="NoWrap"
+                               Text="{Binding DisplayString}" />
+                </DockPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="91" />
+            </Grid.RowDefinitions>
+            <Ribbon Grid.Row="0"
+                    IsEnabled="{Binding SelectedItemViewModel.IsEditMode, Converter={StaticResource BooleanInverted}}">
+                <RibbonTab Header="Stammdatenverwaltung">
+                    <RibbonGroup x:Name="Rib_Group"
+                                 Header="Allgemein">
+                        <RibbonToggleButton x:Name="Rib_Btn_Alle"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Alle"
+                                            IsChecked="{Binding IsAlleContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/user32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                        <RibbonToggleButton x:Name="Rib_Btn_Personen"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Personen"
+                                            IsChecked="{Binding IsPersonContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/user32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                        <RibbonToggleButton x:Name="Rib_Btn_Objekte"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Objekte"
+                                            IsChecked="{Binding IsObjektContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/house32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                    </RibbonGroup>
+                    <RibbonGroup x:Name="Rib_Group_Versorgung"
+                                 Header="Versorgung">
+                        <RibbonToggleButton x:Name="Rib_Btn_Telekommunikation"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Tele-kommunikation"
+                                            IsChecked="{Binding IsTelekomContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/phone32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                        <RibbonToggleButton x:Name="Rib_Btn_Wasser"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Wasser-versorgung"
+                                            IsChecked="{Binding IsWasserContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/water_tap32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                        <RibbonToggleButton x:Name="Rib_Btn_Energie"
+                                            AutomationProperties.AutomationId="MainRibbon_RibbonButton_273083154593352"
+                                            KeyTip="U"
+                                            Label="Energie-unternehmen"
+                                            IsChecked="{Binding IsEnergieContext, Mode=TwoWay}">
+                            <RibbonToggleButton.LargeImageSource>
+                                <BitmapImage AutomationProperties.AutomationId="MainRibbon_BitmapImage_273083154595755"
+                                             CacheOption="OnDemand"
+                                             CreateOptions="IgnoreColorProfile"
+                                             UriSource="pack://application:,,,/Images;component/Images/Icon32/lightning32x32.png" />
+                            </RibbonToggleButton.LargeImageSource>
+                        </RibbonToggleButton>
+                    </RibbonGroup>
+                </RibbonTab>
+            </Ribbon>
+        </Grid>
+        <DockPanel Margin="0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   DockPanel.Dock="Bottom">
+            <Border BorderBrush="LightGray"
+                    BorderThickness="1">
+                <DockPanel DockPanel.Dock="Left">
+                    <DockPanel HorizontalAlignment="Right"
+                               DockPanel.Dock="Bottom">
+                        <Button x:Name="Neu"
+                                Width="100"
+                                Content="Neu"
+                                Style="{StaticResource InputButton}"
+                                Command="{Binding CmdNew}" />
+                    </DockPanel>
+                    <ListBox Width="200"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             VerticalContentAlignment="Top"
+                             DockPanel.Dock="Top"
+                             ItemTemplate="{DynamicResource Adresse_Liste}"
+                             ItemsSource="{Binding StammdatenListe, Mode=OneWay}"
+                             SelectedItem="{Binding SelectedItemViewModel, Mode=TwoWay}"
+                             BorderBrush="LightGray"
+                             BorderThickness="0,0,0,1" />
+                </DockPanel>
+            </Border>
+            <Border BorderBrush="LightGray"
+                    BorderThickness="0,1,1,1"
+                    DockPanel.Dock="Top">
+                <DockPanel>
+                    <DockPanel HorizontalAlignment="Right"
+                               DockPanel.Dock="Bottom">
+                        <Button x:Name="Bearbeiten"
+                                DockPanel.Dock="Left"
+                                Content="Bearbeiten"
+                                Command="{Binding CmdEdit}"
+                                Style="{StaticResource InputButton}" />
+                        <Button x:Name="Speichern"
+                                DockPanel.Dock="Left"
+                                Content="Speichern"
+                                Command="{Binding CmdSave}"
+                                Style="{StaticResource InputButton}" />
+                        <Button x:Name="Abbrechen"
+                                DockPanel.Dock="Right"
+                                Content="Abbrechen"
+                                Command="{Binding CmdCancel}"
+                                Style="{StaticResource InputButton}" />
+                    </DockPanel>
+                    <Border x:Name="Border_Content"
+                            BorderBrush="LightGray"
+                            BorderThickness="0,0,0,1">
+                        <StackPanel Height="Auto"
+                                    DockPanel.Dock="Bottom">
+                            <Border Height="{Binding ElementName=Border_Content, Path=ActualHeight}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItemViewModel}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="Bitte selektieren Sie einen Datensatz oder erstellen Sie einen neuen."
+                                           FontWeight="Light"
+                                           FontSize="16" />
+                            </Border>
+                            <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItemViewModel.StammdatenTyp}" Value="2">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="200*" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="200*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <!--  Zeile 1  -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Content="Anrede:" />
+                                <ComboBox x:Name="Anrede"
+                                          Grid.Row="0"
+                                          Grid.Column="1"
+                                          Tag="Anrede"
+                                          Style="{StaticResource InputComboBox}"
+                                          ItemsSource="{Binding Path=SelectedItemViewModel.Anrede, Converter={helper:EnumToCollectionConverter}, Mode=OneWay}"
+                                          SelectedValuePath="Value"
+                                          DisplayMemberPath="Description"
+                                          SelectedValue="{Binding Path=SelectedItemViewModel.Anrede}"
+                                          IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Content="Titel:" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Nachname"
+                                         Text="{Binding SelectedItemViewModel.Titel}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}"
+                                         MaxLength="100"
+                                         IsReadOnly="False" />
+                                <!--  Zeile 2  -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Content="Vorname:" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="1"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Vorname"
+                                         Text="{Binding SelectedItemViewModel.Vorname}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="2"
+                                       Content="Nachname:" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Nachname"
+                                         Text="{Binding SelectedItemViewModel.Nachname}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <!--  Zeile 3  -->
+                                <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Content="Geburtsdatum:" />
+                                <DatePicker Grid.Row="2"
+                                            Grid.Column="1"
+                                            SelectedDate="{Binding SelectedItemViewModel.Geburtsdatum}"
+                                            Style="{StaticResource InputDatePicker}"
+                                            IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <Label Grid.Row="2"
+                                       Grid.Column="2"
+                                       Content="Geburtsort:" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Geburtsort"
+                                         Text="{Binding SelectedItemViewModel.Geburtsort}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItemViewModel.StammdatenTyp}" Value="3">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding SelectedItemViewModel.StammdatenTyp}" Value="4">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding SelectedItemViewModel.StammdatenTyp}" Value="5">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="200*" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="200*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <!--  Zeile 1  -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Content="Name:" />
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Name"
+                                         Text="{Binding SelectedItemViewModel.Name}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <!--  Zeile 2  -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Content="Straße:" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="1"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Straße"
+                                         Text="{Binding SelectedItemViewModel.Strasse}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="2"
+                                       Content="Hausnummer:" />
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Hausnummer"
+                                         Text="{Binding SelectedItemViewModel.Hausnummer}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <!--  Zeile 3  -->
+                                <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Content="PLZ:" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="1"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="PLZ"
+                                         Text="{Binding SelectedItemViewModel.Plz}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                                <Label Grid.Row="2"
+                                       Grid.Column="2"
+                                       Content="Ort:" />
+                                <TextBox Grid.Row="2"
+                                         Grid.Column="3"
+                                         Style="{StaticResource InputTextBox}"
+                                         Tag="Ort"
+                                         Text="{Binding SelectedItemViewModel.Ort}"
+                                         IsEnabled="{Binding SelectedItemViewModel.IsEditMode}" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </DockPanel>
+            </Border>
+
+        </DockPanel>
+    </DockPanel>
+
+</Window>
