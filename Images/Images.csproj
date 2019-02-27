@@ -88,5 +88,13 @@
     <Resource Include="Images\Icon16\user16x16.png" />
     <Resource Include="Images\Icon16\water_tap16x16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Pictures\house.png" />
+    <Content Include="Images\Pictures\lightning.png" />
+    <Content Include="Images\Pictures\phone.png" />
+    <Resource Include="Images\Pictures\stammdaten.png" />
+    <Content Include="Images\Pictures\user.png" />
+    <Content Include="Images\Pictures\water_tap.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
