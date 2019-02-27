@@ -51,6 +51,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
@@ -67,10 +68,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\AmountTextBoxCharacters.cs" />
     <Compile Include="Converter\BooleanInvertedConverter.cs" />
+    <Compile Include="Helper\AvaibleCharactersToolTip.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\PropertyHelper.cs" />
     <Compile Include="Models\IStammdaten.cs" />
     <Compile Include="Models\Person\EnumAnrede.cs" />
     <Compile Include="Models\Person\IPerson.cs" />
